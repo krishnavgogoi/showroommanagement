@@ -300,7 +300,7 @@
        CONFIG PAGE (OVERLAY)
        ========================================================= */
     #configpg {
-      overflow-y: auto;
+      overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
     }
   
@@ -373,12 +373,16 @@
     /* Right panel — full width */
     #configpg .middle .rightc {
       width: 100%;
-      height: auto;
+     max-height: 400px;   /* or height: 300px */
+  overflow-y: auto;
+      overflow-x:hidden;
       background: linear-gradient(180deg, #252627 0%, #3a3c3d 50%, #252627 100%);
     }
   
+    
     #configpg .middle .rightc .selections {
-      height: auto;
+      
+      height:300px;
     }
   
     #configpg .middle .rightc h3 {
@@ -423,11 +427,13 @@
   
     /* Add car button */
     #configpg .laststep {
-      padding: 16px;
-      position: sticky;
+      margin-top:450px;
+      padding: 0px;
+      position:sticky;
       bottom: 0;
       background: #1a1a1a;
       border-top: 1px solid #333;
+      
     }
   
     #configpg #addCarBtn {
