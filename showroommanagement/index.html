@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OOP C++ Web Project</title>
+<link href="https://fonts.googleapis.com/css2?family=Michroma&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="mobile.css">
+
+
+
+<!-- ============================================================
+     MAIN PAGE CONTENT
+     ============================================================ -->
+
+<div id="taxdetails">
+    <div class="topcontent">
+        <div class="cross">X</div>
+    </div>
+    <div class="toplogo">
+        <div class="toplogoimg"></div>
+    </div>
+    <div style="height: 150vh;">
+        <div class="container">
+            <h1>Car Payment Checkout</h1>
+            <h2>Customer Details</h2>
+            <div class="grid">
+                <input placeholder="Customer Name">
+                <input placeholder="Phone Number">
+                <input placeholder="Email">
+                <input placeholder="Address">
+                <input placeholder="Bank Account No">
+            </div>
+            <h2>Car Details</h2>
+            <div class="grid">
+                <div class="field"><label>Model: </label><span id="brandName"></span></div>
+                <div class="field"><label>Colour: </label><span id="extcolour"></span></div>
+                <div class="field"><label>Wheel Size: </label><span id="wheelsize"></span></div>
+                <div class="field"><label>Fuel Type: </label><span id="fuel"></span></div>
+                <div class="field"><label>Ex-Showroom Price: </label><span id="price"></span></div>
+            </div>
+            <h2>Payment</h2>
+            <div class="grid">
+                <select>
+                    <option>Payment Mode</option>
+                    <option>Cash</option>
+                    <option>Card</option>
+                    <option>Loan</option>
+                </select>
+                <div class="field"><label>Discount: </label><span id="discount">0</span></div>
+            </div>
+            <div class="summary">
+                <h3>Price Summary</h3>
+                <p>GST (<span id="gstrate">0</span>%): ₹<span id="gst">0</span></p>
+                <p>Total Price: ₹<span id="total">0</span></p>
+            </div>
+            <button onclick="calculate()">Confirm and Pay</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="configpg">
+    <div class="configpgtop">
+        <div class="cross">X</div>
+    </div>
+    <div class="content">
+        <div class="middle">
+            <div class="leftc">
+                <video id="bgVideo" autoplay muted loop playsinline></video>
+            </div>
+            <div class="moreopt">
+                <div class="ch active" id="1">01</div>
+                <div class="ch" id="2">02</div>
+            </div>
+            <div class="rightc">
+                <h3>Car Selected:<div class="carname"></div></h3>
+                <div class="selections">
+                    <div class="z01 active">
+                        <p>01:EXTERIOR</p>
+                        <div class="dropdown">
+                            <div class="dropdown-selected">EXTERIOR PAINT</div>
+                            <div class="dropdown-options">
+                                <div class="pval" data-value="white" data-price="0"><div class="val"></div><div class="wname">WHITE</div><div class="wprice">₹0</div></div>
+                                <div class="pval" data-value="grey" data-price="15000"><div class="val"></div><div class="wname">GREY</div><div class="wprice">₹15,000</div></div>
+                                <div class="pval" data-value="black" data-price="20000"><div class="val"></div><div class="wname">BLACK</div><div class="wprice">₹20,000</div></div>
+                                <div class="pval" data-value="red" data-price="35000"><div class="val"></div><div class="wname">RED</div><div class="wprice">₹35,000</div></div>
+                                <div class="pval" data-value="green" data-price="30000"><div class="val"></div><div class="wname">GREEN</div><div class="wprice">₹30,000</div></div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <div class="dropdown-selected">Wheel Size</div>
+                            <div class="dropdown-options">
+                                <div class="pval" data-value="15" data-price="0"><div class="wname">15" Alloys</div><div class="wprice">₹0</div></div>
+                                <div class="pval" data-value="17" data-price="0"><div class="wname">17" Alloys</div><div class="wprice">₹10,000</div></div>
+                                <div class="pval" data-value="18" data-price="20000"><div class="wname">18" Alloys</div><div class="wprice">₹20,000</div></div>
+                                <div class="pval" data-value="19" data-price="40000"><div class="wname">19" Alloys</div><div class="wprice">₹40,000</div></div>
+                                <div class="pval" data-value="20" data-price="65000"><div class="wname">20" Alloys</div><div class="wprice">₹65,000</div></div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <div class="dropdown-selected">Spoilers</div>
+                            <div class="dropdown-options">
+                                <div class="pval" data-value="standard-spoiler" data-price="0"><div class="wname">No Spoiler</div><div class="wprice">₹0</div></div>
+                                <div class="pval" data-value="performance-spoiler" data-price="25000"><div class="wname">Performance Rear Spoiler</div><div class="wprice">₹25,000</div></div>
+                                <div class="pval" data-value="ducktail-spoiler" data-price="20000"><div class="wname">Sport Ducktail Spoiler</div><div class="wprice">₹20,000</div></div>
+                                <div class="pval" data-value="carbon-wing" data-price="60000"><div class="wname">Carbon Fiber  Wing</div><div class="wprice">₹60,000</div></div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <div class="dropdown-selected">Exhaust</div>
+                            <div class="dropdown-options">
+                                <div class="pval" data-value="standard-exhaust" data-price="0"><div class="wname">Standard Exhaust</div><div class="wprice">₹0</div></div>
+                                <div class="pval" data-value="sport-exhaust" data-price="15000"><div class="wname">Sport Performance Exhaust</div><div class="wprice">₹15,000</div></div>
+                                <div class="pval" data-value="black-exhaust" data-price="20000"><div class="wname">Black Dual Exhaust Tips</div><div class="wprice">₹20,000</div></div>
+                                <div class="pval" data-value="carbon-exhaust" data-price="40000"><div class="wname">Carbon Fiber Exhaust Tips</div><div class="wprice">₹40,000</div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="z02">
+                        <p>02:INTERIOR</p>
+                        <div class="dropdown">
+                            <div class="dropdown-selected">INTERIOR THEME</div>
+                            <div class="dropdown-options">
+                                <div class="pval" data-value="black" data-price="0"><div class="val"></div><div class="wname">BLACK</div><div class="wprice">₹0</div></div>
+                                <div class="pval" data-value="grey" data-price="15000"><div class="val"></div><div class="wname">GREY</div><div class="wprice">₹15,000</div></div>
+                                <div class="pval" data-value="white" data-price="20000"><div class="val"></div><div class="wname">WHITE</div><div class="wprice">₹20,000</div></div>
+                                <div class="pval" data-value="red" data-price="35000"><div class="val"></div><div class="wname">RED</div><div class="wprice">₹35,000</div></div>
+                                <div class="pval" data-value="yellow" data-price="30000"><div class="val"></div><div class="wname">YELLOW</div><div class="wprice">₹30,000</div></div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <div class="dropdown-selected">Seat Material</div>
+                            <div class="dropdown-options">
+                                <div class="pval" data-value="cloth" data-price="0"><div class="wname">Cloth Seats</div><div class="wprice">₹0</div></div>
+                                <div class="pval" data-value="leather" data-price="60000"><div class="wname">Leather Seats</div><div class="wprice">₹60,000</div></div>
+                                <div class="pval" data-value="nappa-leather" data-price="120000"><div class="wname">Premium Nappa Leather</div><div class="wprice">₹1,20,000</div></div>
+                                <div class="pval" data-value="alcantara" data-price="150000"><div class="wname">Alcantara Sport Seats</div><div class="wprice">₹1,50,000</div></div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <div class="dropdown-selected">Interior Trim</div>
+                            <div class="dropdown-options">
+                                <div class="pval" data-value="piano-black" data-price="0"><div class="wname">Piano Black Trim</div><div class="wprice">₹0</div></div>
+                                <div class="pval" data-value="aluminum" data-price="20000"><div class="wname">Brushed Aluminum Trim</div><div class="wprice">₹20,000</div></div>
+                                <div class="pval" data-value="wood" data-price="35000"><div class="wname">Luxury Wood Trim</div><div class="wprice">₹35,000</div></div>
+                                <div class="pval" data-value="carbon-fiber" data-price="70000"><div class="wname">Carbon Fiber Trim</div><div class="wprice">₹70,000</div></div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <div class="dropdown-selected">Sound System</div>
+                            <div class="dropdown-options">
+                                <div class="pval" data-value="standard-audio" data-price="0"><div class="wname">Standard 6 Speaker Audio</div><div class="wprice">₹0</div></div>
+                                <div class="pval" data-value="premium-audio" data-price="45000"><div class="wname">Premium 10 Speaker Audio</div><div class="wprice">₹45,000</div></div>
+                                <div class="pval" data-value="surround-audio" data-price="90000"><div class="wname">16 Speaker Surround Sound</div><div class="wprice">₹90,000</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="laststep">
+                    <button id="addCarBtn">Add Car</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="topheader">
+    <div class="left"></div>
+    <div class="right">
+        <span style="font-size:30px; cursor:pointer;">&#9776;</span>
+    </div>
+</div>
+
+<div id="login">
+    <div class="top"><span>&times;</span></div>
+    <div class="middle">
+        Select Role
+        <div class="updiv">
+            <div class="customer">Customer</div>
+            <div class="admin">Admin</div>
+        </div>
+    </div>
+</div>
+
+<div id="admincheckerpg">
+    <div id="adminchecker">
+        <h2>Admin Login</h2>
+        <form id="adminForm">
+            <div class="input-group">
+                <label for="admin-username">Username</label>
+                <input type="text" id="admin-username" placeholder="Enter username" required>
+            </div>
+            <div class="input-group">
+                <label for="admin-password">Password</label>
+                <input type="password" id="admin-password" placeholder="Enter password" required>
+            </div>
+            <button type="submit">Login</button>
+            <button type="button" id="cancelAdmin">Cancel</button>
+        </form>
+    </div>
+</div>
+
+<div id="admincontrol">
+    <div class="admin-wrapper">
+        <div class="admin-card">
+            <h2>🚗 Admin Control - Car Management</h2>
+            <form id="carForm" class="car-form">
+                <div class="input-group">
+                    <input type="text" id="carName" placeholder="Car Name" required>
+                    <input type="text" id="carNumber" placeholder="Quantity Added" required>
+                    <input type="number" id="basePrice" placeholder="Base Price" required>
+                </div>
+                <button type="submit" class="primary-btn">+ Add Car</button>
+            </form>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr><th>Name</th><th>Quantity Added</th><th>Base Price</th><th>Action</th></tr>
+                    </thead>
+                    <tbody id="carTableBody"></tbody>
+                </table>
+                <div class="done-container">
+                    <button type="button" class="done-btn" onclick="closeAdmin()">✔ Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="customerLoginPage">
+    <div class="customer-login-card">
+        <span class="close-btn" id="closeCustomerLogin">&times;</span>
+        <div class="login-header">
+            <h2>CUSTOMER SIGN UP</h2>
+            <div class="line"></div>
+            <p class="subtitle">Start your journey toward owning your dream machine.</p>
+        </div>
+        <form id="customerLoginForm">
+            <div class="field">
+                <input type="email" id="cust-email" required>
+                <label>Email Address</label>
+            </div>
+            <div class="field">
+                <input type="password" id="cust-password" required>
+                <label>Password</label>
+            </div>
+            <button type="submit">ENTER</button>
+        </form>
+    </div>
+</div>
+
+<div id="booktestdrive">
+    <div class="td-card">
+        <div class="td-header">
+            <div class="td-close-btn" onclick="tdClosePage()">&#x2715;</div>
+            <div class="td-brand-line">
+                <div class="td-brand-dot"></div>
+                <span class="td-brand-label">Premium Experience</span>
+            </div>
+            <h1 class="td-title">Book Your Test Drive</h1>
+            <p class="td-subtitle">Reserve your exclusive driving experience today</p>
+        </div>
+        <div class="td-body">
+            <div class="td-field">
+                <label class="td-label">Select Vehicle</label>
+                <select id="td-car">
+                    <option value="">Choose a model</option>
+                    <option value="Mustang">Mustang</option>
+                    <option value="720S">720S</option>
+                    <option value="Challenger">Challenger</option>
+                    <option value="M3 CS">M3 CS</option>
+                    <option value="E-Tron">E-Tron</option>
+                </select>
+            </div>
+            <div class="td-field">
+                <label class="td-label">Full Name</label>
+                <input type="text" id="td-name" placeholder="Enter your name">
+            </div>
+            <div class="td-field">
+                <label class="td-label">Email Address</label>
+                <input type="email" id="td-email" placeholder="you@example.com">
+            </div>
+            <div class="td-row">
+                <div class="td-field">
+                    <label class="td-label">Date</label>
+                    <input type="date" id="td-date">
+                </div>
+                <div class="td-field">
+                    <label class="td-label">Time</label>
+                    <input type="time" id="td-time">
+                </div>
+            </div>
+            <button class="td-submit-btn" id="td-submit-btn" onclick="tdHandleSubmit()">Confirm Reservation</button>
+            <div class="td-confirmation" id="td-confirmation">
+                Reservation confirmed!
+                <div id="td-conf-text"></div>
+                <button class="td-done-btn" onclick="tdClosePage()">Done &#x2713;</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="scroll-container">
+
+<div id="page1">
+    <div class="left1"></div>
+    <div class="left1txt"><br><br>Buy the <span>drive</span> you've been <span>dreaming</span> about</div>
+    <div class="right1"></div>
+</div>
+<!--          xxxxxxxxxxxxxxx     x x x x x x x x x x xx x  x x x x xx x -->
+<div id="page2">
+    <div class="pg2-header">
+      <div>
+        <p class="pg2-label">Our Models</p>
+        <h1 class="pg2-title">Setting new standards in<br>automotive excellence</h1>
+      </div>
+      <div class="pg2-count">05</div>
+    </div>
+  
+    <div class="ticker-track" id="tickerTrack">
+      <div class="t-card">
+        <img src="https://images.unsplash.com/photo-1546356594-2b91bd0d72bb?w=900&auto=format&fit=crop&q=60" alt="Mustang">
+        <div class="t-card-index">01 / 05</div>
+        <div class="t-card-info">
+          <div class="t-card-name">Mustang</div>
+          <div class="t-card-spec">450 HP · Petrol · V8</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <img src="https://images.unsplash.com/photo-1594950195709-a14f66c242d7?w=900&auto=format&fit=crop&q=60" alt="720S">
+        <div class="t-card-index">02 / 05</div>
+        <div class="t-card-info">
+          <div class="t-card-name">720S</div>
+          <div class="t-card-spec">720 HP · Petrol · Twin Turbo</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <img src="https://images.unsplash.com/photo-1609358781568-1b8ec2627650?w=900&auto=format&fit=crop&q=60" alt="Challenger">
+        <div class="t-card-index">03 / 05</div>
+        <div class="t-card-info">
+          <div class="t-card-name">Challenger</div>
+          <div class="t-card-spec">717 HP · Petrol · V8</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <img src="https://images.unsplash.com/photo-1619864069715-f4c7ba7376ec?w=900&auto=format&fit=crop&q=60" alt="M3 CS">
+        <div class="t-card-index">04 / 05</div>
+        <div class="t-card-info">
+          <div class="t-card-name">M3 CS</div>
+          <div class="t-card-spec">543 HP · Petrol · Inline-6</div>
+        </div>
+      </div>
+      <div class="t-card">
+        <img src="https://images.unsplash.com/photo-1655126275641-21e114342284?w=900&auto=format&fit=crop&q=60" alt="E-Tron">
+        <div class="t-card-index">05 / 05</div>
+        <div class="t-card-info">
+          <div class="t-card-name">E-Tron</div>
+          <div class="t-card-spec">503 HP · Electric · Dual Motor</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="ticker-hint">← DRAG TO EXPLORE →</div>
+  </div>
+<!-- x x  xx x  xx x x x  x x x x x x x x x x x x  x xx x  x x x x xx x x x x x x x x x x x x x x  -->
+<div id="page4">
+    <div class="top4"></div>
+    <div data-value="Petrol" data-img="https://images.unsplash.com/photo-1546356594-2b91bd0d72bb?w=900&auto=format&fit=crop&q=60" data-vid="mustang.mp4" class="bottom4">
+        <div class="bottom4t">Mustang</div>
+        <div class="bottom4b"><button>Configure</button></div>
+    </div>
+</div>
+
+<div id="page5">
+    <div class="top5"></div>
+    <div data-value="Petrol" data-img="https://images.unsplash.com/photo-1594950195709-a14f66c242d7?w=900&auto=format&fit=crop&q=60" data-vid="720s.mp4" class="bottom4">
+        <div class="bottom4t">720s</div>
+        <div class="bottom4b"><button>Configure</button></div>
+    </div>
+</div>
+
+<div id="page6">
+    <div class="top6"></div>
+    <div data-value="Petrol" data-img="https://images.unsplash.com/photo-1609358781568-1b8ec2627650?w=900&auto=format&fit=crop&q=60"data-vid="challenger.mp4" class="bottom4">
+        <div class="bottom4t">Challenger</div>
+        <div class="bottom4b"><button>Configure</button></div>
+    </div>
+</div>
+
+<div id="page7">
+    <div class="top7"></div>
+    <div data-value="Petrol" data-img="https://images.unsplash.com/photo-1717251430355-6bcf9e69e775?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8Ym13JTIwbTNjc3xlbnwwfHwwfHx8MA%3D%3D"data-vid="m3cs.mp4" class="bottom4">
+        <div class="bottom4t">M3 CS</div>
+        <div class="bottom4b"><button>Configure</button></div>
+    </div>
+</div>
+
+<div id="page8">
+    <div class="top8"></div>
+    <div data-value="EV" data-img="https://images.unsplash.com/photo-1655126275641-21e114342284?w=900&auto=format&fit=crop&q=60"data-vid="etron.mp4" class="bottom4">
+        <div class="bottom4t">E-Tron</div>
+        <div class="bottom4b"><button>Configure</button></div>
+    </div>
+</div>
+
+<div id="page9">
+    <div id="lastpage-top">
+        <div class="cars-row">
+            <img src="https://images.unsplash.com/photo-1580014317999-e9f1936787a5?w=900&auto=format&fit=crop&q=60">
+            <img src="https://images.unsplash.com/photo-1579618666052-1280d34a6c69?w=900&auto=format&fit=crop&q=60">
+            <img src="https://images.unsplash.com/photo-1669625378472-e8faaf2503de?w=900&auto=format&fit=crop&q=60">
+            <img src="https://images.unsplash.com/photo-1706652719111-ae7f420d7598?w=900&auto=format&fit=crop&q=60">
+            <img src="https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?w=900&auto=format&fit=crop&q=60">
+        </div>
+        <div class="brandblock">
+            <h1>M MOTORS</h1>
+            <p>Performance • Precision • Power</p>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="brand">M Motors</div>
+                <p>Performance driven engineering and design.</p>
+                <div class="social">
+                    <span>Instagram</span>
+                    <span>YouTube</span>
+                    <span>Twitter</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Vehicles</h3>
+                <a href="#" onclick="goToCar('page4')">Mustang</a>
+                <a href="#" onclick="goToCar('page5')">720s</a>
+                <a href="#" onclick="goToCar('page6')">Challenger</a>
+                <a href="#" onclick="goToCar('page7')">M3 CS</a>
+                <a href="#" onclick="goToCar('page8')">E-Tron</a>
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <div id="booktest">Book Test Drive</div>
+                <a href="#">Find Dealer</a>
+                <a href="#">Service Center</a>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <a href="#">About Us</a>
+                <a href="#">Careers</a>
+                <a href="#">News</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <div class="bottom">
+            <span>© 2026 M Motors</span>
+            <span>Privacy Policy | Terms of Service</span>
+        </div>
+    </footer>
+</div>
+
+</div><!-- /#scroll-container -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+
+<script>
+  var Module = {
+      onRuntimeInitialized: function () {
+          console.log(" WASM FULLY READY");
+          window.taxSystem      = new Module.TaxSystem();
+          window.adminSystem    = new Module.AdminSystem();
+          window.bookingManager = new Module.BookingManager();
+          console.log("TaxSystem, AdminSystem, BookingManager ready");
+      }
+  };
+</script>
+
+<script src="main.js"></script>
+<script src="indx.js"></script>
+<script src="mobile.js"></script>
+
+</body>
+</html>
