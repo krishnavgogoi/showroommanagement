@@ -8,7 +8,6 @@
 
 
 
-
 // Prevent scrolling while loader is visible
 // Add "loading" class to body immediately
 
@@ -236,6 +235,7 @@ document.getElementById("customerLoginForm")
 let carfuel;
 let configpage = document.querySelector("#configpg");
 
+
 document.querySelectorAll(".bottom4b button").forEach(btn => {
   btn.addEventListener("click", function (event) {
 
@@ -437,12 +437,21 @@ document.querySelector("#configpg #addCarBtn")
   });
 
   // ---- 4. C++ TaxSystem base price + addon price ----
-  const result = window.taxSystem.calculate(carName, carfuel);
+  // const result = window.taxSystem.calculate(carName, carfuel);
 
-  // addon price is added to taxable amount before GST
-  const gstRate        = result.gstrate / 100;
-  const basePrice      = result.price;
-  const discount       = result.discount;
+  // // addon price is added to taxable amount before GST
+  // const gstRate        = result.gstrate / 100;
+  // const basePrice      = result.price;
+  // const discount       = result.discount;
+  const result = window.taxSystem.calculate(carName, carfuel);
+  const cfg    = window.priceConfig?.[carName];
+  
+  const gstRate   = result.gstrate / 100;          // always from WASM
+  const basePrice = cfg?.price      ?? result.price;
+  const discount  = cfg?.discountRs ?? result.discount;
+
+
+
   const taxableWithAddon = (basePrice - discount) + addonTotal;
   const gstWithAddon   = taxableWithAddon * gstRate;
   const totalWithAddon = taxableWithAddon + gstWithAddon;
@@ -482,12 +491,222 @@ document.querySelector("#configpg #addCarBtn")
   });
 });
 
+
+
+
+
+
+
+
+
+// var Module = {
+//   onRuntimeInitialized: function () {
+//       console.log("WASM READY");
+//       window.taxSystem      = new Module.TaxSystem();
+//       window.adminSystem    = new Module.AdminSystem();
+//       window.bookingManager = new Module.BookingManager();
+
+//       // ── Load admin-set prices ──────────────────────────────────
+//       fetch('prices.json')
+//           .then(r => r.json())
+//           .then(cfg => {
+//               window.priceConfig = cfg;
+//               console.log("prices.json loaded:", cfg);
+//           })
+//           .catch(() => {
+//               // File doesn't exist yet — use WASM defaults silently
+//               window.priceConfig = null;
+//           });
+//   }
+// };
+
+
+// document.querySelector("#configpg #addCarBtn")
+// .addEventListener("click", () => {
+ 
+//     if (!window.taxSystem) {
+//         alert("WASM still initializing, try again.");
+//         return;
+//     }
+ 
+//     taxpage.classList.add("active");
+ 
+//     const carName = document.querySelector(".carname").textContent.trim() || "Unknown";
+//     taxpage.querySelector("#brandName").textContent = carName;
+//     taxpage.querySelector("#fuel").textContent      = carfuel;
+ 
+//     // ── Colour / wheel (same as before) ──────────────────────────
+//     const exteriorDrops = document.querySelectorAll("#configpg .z01 .dropdown");
+//     const interiorDrops = document.querySelectorAll("#configpg .z02 .dropdown");
+ 
+//     const extColourChosen = getChosenOption(exteriorDrops[0]);
+//     const extColourName   = extColourChosen.querySelector(".wname")?.textContent.trim() || "WHITE";
+//     const extColourPrice  = parseInt(extColourChosen.dataset.price || 0);
+//     const intColourChosen = getChosenOption(interiorDrops[0]);
+//     const intColourName   = intColourChosen.querySelector(".wname")?.textContent.trim() || "BLACK";
+//     const intColourPrice  = parseInt(intColourChosen.dataset.price || 0);
+//     taxpage.querySelector("#extcolour").textContent =
+//         `${extColourName} (Ext)${extColourPrice > 0 ? " +₹"+extColourPrice.toLocaleString() : ""}  /  ` +
+//         `${intColourName} (Int)${intColourPrice > 0 ? " +₹"+intColourPrice.toLocaleString() : ""}`;
+ 
+//     const wheelChosen = getChosenOption(exteriorDrops[1]);
+//     const wheelName   = wheelChosen.querySelector(".wname")?.textContent.trim() || "15\" Alloys";
+//     const wheelPrice  = parseInt(wheelChosen.dataset.price || 0);
+//     taxpage.querySelector("#wheelsize").textContent =
+//         wheelPrice > 0 ? `${wheelName} +₹${wheelPrice.toLocaleString()}` : wheelName;
+ 
+//     // ── Addon total ───────────────────────────────────────────────
+//     const allDropdowns = [
+//         ...document.querySelectorAll("#configpg .z01 .dropdown"),
+//         ...document.querySelectorAll("#configpg .z02 .dropdown")
+//     ];
+//     let addonTotal = 0;
+//     allDropdowns.forEach(d => {
+//         addonTotal += parseInt(getChosenOption(d).dataset.price || 0);
+//     });
+ 
+//     // ── Price: admin override takes priority over WASM ────────────
+//     const cfg    = window.priceConfig?.[carName];   // admin-set config
+//     const wasmResult = window.taxSystem.calculate(carName, carfuel);
+ 
+//     const basePrice  = cfg ? cfg.price       : wasmResult.price;
+//     const discountRs = cfg ? cfg.discountRs  : wasmResult.discount;
+//     const gstRatePct = carfuel === "EV" ? 5 : 18;
+ 
+//     // Show admin note if set
+//     if (cfg?.note) {
+//         let noteEl = taxpage.querySelector("#admin-note");
+//         if (!noteEl) {
+//             noteEl = document.createElement("p");
+//             noteEl.id = "admin-note";
+//             noteEl.style.cssText = "color:#e8b84b;font-size:13px;margin:4px 0";
+//             taxpage.querySelector(".summary").prepend(noteEl);
+//         }
+//         noteEl.textContent = cfg.note;
+//     }
+ 
+//     const taxable       = (basePrice - discountRs) + addonTotal;
+//     const gstAmount     = taxable * (gstRatePct / 100);
+//     const totalWithGst  = taxable + gstAmount;
+ 
+//     document.getElementById("price").textContent    = "₹" + basePrice.toLocaleString();
+//     document.getElementById("discount").textContent = discountRs.toLocaleString();
+//     document.getElementById("gstrate").textContent  = gstRatePct;
+//     document.getElementById("gst").textContent      = gstAmount.toFixed(2);
+//     document.getElementById("total").textContent    = totalWithGst.toFixed(2);
+ 
+//     // ── Dynamic config rows (unchanged from your original) ────────
+//     const carGrid = document.querySelector("#brandName").closest(".grid");
+//     if (!carGrid) return;
+//     carGrid.querySelectorAll(".dynamic-config").forEach(e => e.remove());
+ 
+//     allDropdowns.forEach((dropdown, index) => {
+//         if (index === 0 || index === 1 || index === 4) return;
+//         const chosen   = getChosenOption(dropdown);
+//         const optName  = chosen.querySelector(".wname")?.textContent.trim() || "";
+//         const optPrice = parseInt(chosen.dataset.price || 0);
+//         const label    = dropdownLabels[index] ||
+//                          dropdown.querySelector(".dropdown-selected").textContent.trim();
+//         const field = document.createElement("div");
+//         field.classList.add("field", "dynamic-config");
+//         field.innerHTML = `<label>${label}: </label>
+//                            <span>${optName}${optPrice > 0
+//                                ? " (+₹" + optPrice.toLocaleString() + ")"
+//                                : ""}</span>`;
+//         carGrid.appendChild(field);
+//     });
+// });
+
+
+
+
+
+
+
+
+
 // close tax page
 document.querySelector("#taxdetails .topcontent .cross")
 .addEventListener("click", () => {
   taxpage.classList.remove("active");
+  
 });
 
+
+
+// function taxpgbtn(){
+//   alert("Car booked successfully");
+//   taxpage.classList.remove("active");
+  
+//   configpage.classList.remove("active");
+// }
+async function taxpgbtn() {
+
+  // ── 1. Validate ────────────────────────────────────────────────────
+  const fields = [
+    { id: "td-custName",  label: "Customer Name"  },
+    { id: "td-custPhone", label: "Phone Number"    },
+    { id: "td-custEmail", label: "Email"           },
+    { id: "td-custAddr",  label: "Address"         },
+    { id: "td-custBank",  label: "Bank Account No" },
+  ];
+
+  for (const f of fields) {
+    const el = document.getElementById(f.id);
+    if (!el.value.trim()) {
+      el.focus();
+      el.style.outline = "2px solid red";
+      alert(`Please fill in: ${f.label}`);
+      return;
+    }
+    el.style.outline = "";
+  }
+
+  const paymode = document.getElementById("td-paymode");
+  if (!paymode.value) {
+    paymode.style.outline = "2px solid red";
+    alert("Please select a Payment Mode.");
+    paymode.focus();
+    return;
+  }
+  paymode.style.outline = "";
+
+  // ── 2. Build CSV row ───────────────────────────────────────────────
+  const now = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+
+  const row = [
+    now,
+    document.getElementById("td-custName").value.trim(),
+    document.getElementById("td-custPhone").value.trim(),
+    document.getElementById("td-custEmail").value.trim(),
+    document.getElementById("td-custAddr").value.trim(),
+    document.getElementById("td-custBank").value.trim(),
+    document.getElementById("brandName").textContent.trim(),
+    document.getElementById("fuel").textContent.trim(),
+    document.getElementById("extcolour").textContent.trim(),
+    document.getElementById("wheelsize").textContent.trim(),
+    paymode.value,
+    document.getElementById("price").textContent.trim(),
+    document.getElementById("discount").textContent.trim(),
+    document.getElementById("gstrate").textContent.trim(),
+    document.getElementById("gst").textContent.trim(),
+    document.getElementById("total").textContent.trim(),
+  ].map(v => `"${v.replace(/"/g, '""')}"`).join(",");  // CSV-safe quoting
+
+  // ── 3. Append to sales_log.csv (download) ─────────────────────────
+  const blob = new Blob([row + "\n"], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "sales_log.csv";
+  a.click();
+  URL.revokeObjectURL(a.href);
+
+  alert("Booking confirmed! ");
+
+  // ── 4. Close overlays ──────────────────────────────────────────────
+  taxpage.classList.remove("active");
+  configpage.classList.remove("active");
+}
 
 // =============================================
 //  FOOTER — smooth scroll
@@ -499,9 +718,15 @@ function goToCar(pageId) {
 }
 
 
+
+
+
 // =============================================
 //  BOOK TEST DRIVE — uses window.bookingManager
 // =============================================
+
+
+
 
 document.querySelector("#page9 .footer-col #booktest")
 .addEventListener("click", () => {
@@ -543,6 +768,61 @@ tdSetDateDefaults();
 
 // ---- submit — stores in window.bookingManager ----
 
+// function tdHandleSubmit() {
+
+//   const car   = document.getElementById("td-car").value;
+//   const name  = document.getElementById("td-name").value.trim();
+//   const email = document.getElementById("td-email").value.trim();
+//   const date  = tdDateInput.value;
+//   const time  = tdTimeInput.value;
+
+//   if (!car || !name || !email || !date || !time) {
+//       alert("Please fill in all fields.");
+//       return;
+//   }
+
+//   if (new Date(`${date}T${time}`) < new Date()) {
+//       alert("Please select a future date and time.");
+//       return;
+//   }
+
+//   // duplicate check via window.bookingManager
+//   if (window.bookingManager && window.bookingManager.isDuplicate(car, email, date)) {
+//       alert("You already have a test drive booked for this car on this date.");
+//       return;
+//   }
+
+//   // store in window.bookingManager
+//   if (window.bookingManager) {
+//       window.bookingManager.addBooking(car, name, email, date, time);
+//       console.log("Booking stored. Total:", window.bookingManager.getTotalBookings());
+//       console.log(window.bookingManager.getBooking(
+//           window.bookingManager.getTotalBookings() - 1));
+//   }
+
+//   // confirmation UI
+//   const fmtDate = new Date(date + "T00:00:00").toLocaleDateString("en-US", {
+//       weekday: "long", month: "long", day: "numeric", year: "numeric"
+//   });
+//   const fmtTime = new Date("1970-01-01T" + time).toLocaleTimeString("en-US", {
+//       hour: "numeric", minute: "2-digit", hour12: true
+//   });
+
+//   document.getElementById("td-conf-text").innerHTML =
+//       `<span>${car}</span> &middot; ${fmtDate} at <span>${fmtTime}</span><br>
+//        Confirmation will be sent to <span>${email}</span>`;
+
+//   document.getElementById("td-confirmation").classList.add("td-show");
+//   document.getElementById("td-submit-btn").style.display = "none";
+// }
+
+
+
+
+
+
+// ---- submit — stores + saves CSV ----
+
 function tdHandleSubmit() {
 
   const car   = document.getElementById("td-car").value;
@@ -561,24 +841,25 @@ function tdHandleSubmit() {
       return;
   }
 
-  // duplicate check via window.bookingManager
+  // duplicate check
   if (window.bookingManager && window.bookingManager.isDuplicate(car, email, date)) {
       alert("You already have a test drive booked for this car on this date.");
       return;
   }
 
-  // store in window.bookingManager
+  // store locally
   if (window.bookingManager) {
       window.bookingManager.addBooking(car, name, email, date, time);
-      console.log("Booking stored. Total:", window.bookingManager.getTotalBookings());
-      console.log(window.bookingManager.getBooking(
-          window.bookingManager.getTotalBookings() - 1));
   }
+
+  // ✅ NEW: save to CSV
+  tdSaveToCSV(car, name, email, date, time);
 
   // confirmation UI
   const fmtDate = new Date(date + "T00:00:00").toLocaleDateString("en-US", {
       weekday: "long", month: "long", day: "numeric", year: "numeric"
   });
+
   const fmtTime = new Date("1970-01-01T" + time).toLocaleTimeString("en-US", {
       hour: "numeric", minute: "2-digit", hour12: true
   });
@@ -590,6 +871,45 @@ function tdHandleSubmit() {
   document.getElementById("td-confirmation").classList.add("td-show");
   document.getElementById("td-submit-btn").style.display = "none";
 }
+
+function tdSaveToCSV(car, name, email, date, time) {
+
+  const now = new Date().toISOString();
+
+  // Proper CSV escaping
+  function esc(val) {
+    return `"${String(val).replace(/"/g, '""')}"`;
+  }
+
+  const row = [
+    esc(now),
+    esc(name),
+    esc(email),
+    esc(car),
+    esc(date),
+    esc(time)
+  ].join(",");
+
+  // 👉 OPTION 1: Send to backend (BEST)
+  /*
+  fetch("/save-testdrive", {
+      method: "POST",
+      headers: { "Content-Type": "text/plain" },
+      body: row + "\n"
+  });
+  */
+
+  // 👉 OPTION 2: Download CSV (NO backend)
+  const blob = new Blob([row + "\n"], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "testdrive_log.csv";
+  a.click();
+
+  // 👉 OPTION 3: Debug (console)
+  console.log("CSV Row:", row);
+}
+
 
 
 // ---- close & reset ----

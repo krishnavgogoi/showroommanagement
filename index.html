@@ -6,14 +6,14 @@
 <title>OOP C++ Web Project</title>
 <link href="https://fonts.googleapis.com/css2?family=Michroma&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="mobile.css">
+
 
 
 
 <!-- ============================================================
      MAIN PAGE CONTENT
      ============================================================ -->
-
+<!-- taxpage -->
 <div id="taxdetails">
     <div class="topcontent">
         <div class="cross">X</div>
@@ -26,12 +26,12 @@
             <h1>Car Payment Checkout</h1>
             <h2>Customer Details</h2>
             <div class="grid">
-                <input placeholder="Customer Name">
-                <input placeholder="Phone Number">
-                <input placeholder="Email">
-                <input placeholder="Address">
-                <input placeholder="Bank Account No">
-            </div>
+                <input id="td-custName"    placeholder="Customer Name"   required>
+                <input id="td-custPhone"   placeholder="Phone Number"    required>
+                <input id="td-custEmail"   placeholder="Email"           required>
+                <input id="td-custAddr"    placeholder="Address"         required>
+                <input id="td-custBank"    placeholder="Bank Account No" required>
+              </div>
             <h2>Car Details</h2>
             <div class="grid">
                 <div class="field"><label>Model: </label><span id="brandName"></span></div>
@@ -42,12 +42,12 @@
             </div>
             <h2>Payment</h2>
             <div class="grid">
-                <select>
-                    <option>Payment Mode</option>
+                <select id="td-paymode">
+                    <option value="">Payment Mode</option>
                     <option>Cash</option>
                     <option>Card</option>
                     <option>Loan</option>
-                </select>
+                  </select>
                 <div class="field"><label>Discount: </label><span id="discount">0</span></div>
             </div>
             <div class="summary">
@@ -55,11 +55,11 @@
                 <p>GST (<span id="gstrate">0</span>%): ₹<span id="gst">0</span></p>
                 <p>Total Price: ₹<span id="total">0</span></p>
             </div>
-            <button onclick="calculate()">Confirm and Pay</button>
+            <button onclick="taxpgbtn()">Confirm and Pay</button>
         </div>
     </div>
 </div>
-
+<!-- configpg -->
 
 <div id="configpg">
     <div class="configpgtop">
@@ -176,6 +176,9 @@
     </div>
 </div>
 
+
+
+
 <div id="login">
     <div class="top"><span>&times;</span></div>
     <div class="middle">
@@ -186,6 +189,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 <div id="admincheckerpg">
     <div id="adminchecker">
@@ -205,10 +211,13 @@
     </div>
 </div>
 
+
+
+
 <div id="admincontrol">
     <div class="admin-wrapper">
         <div class="admin-card">
-            <h2>🚗 Admin Control - Car Management</h2>
+            <h2> Admin Control - Car Management</h2>
             <form id="carForm" class="car-form">
                 <div class="input-group">
                     <input type="text" id="carName" placeholder="Car Name" required>
@@ -231,6 +240,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 <div id="customerLoginPage">
     <div class="customer-login-card">
@@ -324,7 +336,7 @@
   
     <div class="ticker-track" id="tickerTrack">
       <div class="t-card">
-        <img src="https://images.unsplash.com/photo-1546356594-2b91bd0d72bb?w=900&auto=format&fit=crop&q=60" alt="Mustang">
+        <img src="https://images.unsplash.com/photo-1754973542725-32a9643aecb9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bXVzdGFuZyUyMGRhcmslMjBob3JzZXxlbnwwfHwwfHx8MA%3D%3D" alt="Mustang">
         <div class="t-card-index">01 / 05</div>
         <div class="t-card-info">
           <div class="t-card-name">Mustang</div>
@@ -332,7 +344,7 @@
         </div>
       </div>
       <div class="t-card">
-        <img src="https://images.unsplash.com/photo-1594950195709-a14f66c242d7?w=900&auto=format&fit=crop&q=60" alt="720S">
+        <img src="https://images.unsplash.com/photo-1740806417439-490dba0d926a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWNsYXJlbiUyMDcyMHN8ZW58MHx8MHx8fDA%3D" alt="720S">
         <div class="t-card-index">02 / 05</div>
         <div class="t-card-info">
           <div class="t-card-name">720S</div>
@@ -340,7 +352,7 @@
         </div>
       </div>
       <div class="t-card">
-        <img src="https://images.unsplash.com/photo-1609358781568-1b8ec2627650?w=900&auto=format&fit=crop&q=60" alt="Challenger">
+        <img src="https://i.pinimg.com/736x/36/95/18/369518262247b6f66c6267e32959c65c.jpg" alt="Challenger">
         <div class="t-card-index">03 / 05</div>
         <div class="t-card-info">
           <div class="t-card-name">Challenger</div>
@@ -348,7 +360,7 @@
         </div>
       </div>
       <div class="t-card">
-        <img src="https://images.unsplash.com/photo-1619864069715-f4c7ba7376ec?w=900&auto=format&fit=crop&q=60" alt="M3 CS">
+        <img src="https://images.unsplash.com/photo-1615644406166-3c3538dac1f3?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGJtdyUyMG0zfGVufDB8fDB8fHww" alt="M3 CS">
         <div class="t-card-index">04 / 05</div>
         <div class="t-card-info">
           <div class="t-card-name">M3 CS</div>
@@ -356,7 +368,7 @@
         </div>
       </div>
       <div class="t-card">
-        <img src="https://images.unsplash.com/photo-1655126275641-21e114342284?w=900&auto=format&fit=crop&q=60" alt="E-Tron">
+        <img src="https://i.pinimg.com/1200x/12/20/a0/1220a0625d0d6809363b3e6db3c3ae46.jpg" alt="E-Tron">
         <div class="t-card-index">05 / 05</div>
         <div class="t-card-info">
           <div class="t-card-name">E-Tron</div>
@@ -467,20 +479,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 
 <script>
-  var Module = {
-      onRuntimeInitialized: function () {
-          console.log(" WASM FULLY READY");
-          window.taxSystem      = new Module.TaxSystem();
-          window.adminSystem    = new Module.AdminSystem();
-          window.bookingManager = new Module.BookingManager();
-          console.log("TaxSystem, AdminSystem, BookingManager ready");
-      }
-  };
-</script>
+    var Module = {
+        onRuntimeInitialized: function () {
+            console.log("WASM FULLY READY");
+            window.taxSystem      = new Module.TaxSystem();
+            window.adminSystem    = new Module.AdminSystem();
+            window.bookingManager = new Module.BookingManager();
+  
+            // ← ADD THIS
+            fetch('prices.json')
+                .then(r => r.json())
+                .then(cfg => { window.priceConfig = cfg; })
+                .catch(() => { window.priceConfig = null; });
+        }
+    };
+  </script>
+
+
 
 <script src="main.js"></script>
 <script src="indx.js"></script>
-<script src="mobile.js"></script>
 
 </body>
 </html>
