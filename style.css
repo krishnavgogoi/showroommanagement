@@ -2233,6 +2233,32 @@ html body .bottom4t{
   margin-left:-60px
     
 }
+    #configpg .content .middle{
+        display:flex;
+        flex-direction :column;
+    }
+     #configpg .content .middle .leftc{
+         height:40%;
+         width:100%;
+     }
+    #configpg .content .middle .leftc #bgVideo{
+        object-fit: cover; 
+    }
+    #configpg .content .middle .moreopt{
+        height:5%;
+        width:100%;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:center;
+        padding-top:0px;
+    
+    }
+     #configpg .content .middle .rightc{
+         height:55%;
+         width:100%
+         
+     }
 
 #page9 .footer-container{
    
