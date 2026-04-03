@@ -2157,6 +2157,50 @@ input, select{
 
 @media (max-width: 768px) {
   html body #scroll-container #page4 {
+      width:100vw;
+      
     background-image: url('https://i.pinimg.com/736x/0c/c6/8e/0cc68e4513b80a24711f742546dfd2f1.jpg') !important;
+       background-size: cover; /* Forces the image to fill the entire container */
+    background-position: center; /* Keeps the focus in the middle */
+    background-repeat: no-repeat; /* Prevents tiling */
   }
+    html body #scroll-container #page5 {
+      width:100vw;
+      
+    background-image: url('https://i.pinimg.com/736x/69/e5/32/69e532f58470b8035ee49072502f3801.jpg') !important;
+       background-size: cover; /* Forces the image to fill the entire container */
+    background-position: center; /* Keeps the focus in the middle */
+    background-repeat: no-repeat; /* Prevents tiling */
+        
+  }
+     html body #scroll-container #page6 {
+      width:100vw;
+      
+    background-image: url('https://i.pinimg.com/1200x/ed/28/72/ed287204a4151cc6614a2592fcf2b6f8.jpg') !important;
+       background-size: cover; /* Forces the image to fill the entire container */
+    background-position: center; /* Keeps the focus in the middle */
+    background-repeat: no-repeat; /* Prevents tiling */
+        
+  }
+ html body #scroll-container #page7 {
+      width:100vw;
+      
+    background-image: url('https://i.pinimg.com/736x/0b/28/f6/0b28f6285d45fd992a398f5de9bb1b9c.jpg') !important;
+       background-size: cover; /* Forces the image to fill the entire container */
+    background-position: center; /* Keeps the focus in the middle */
+    background-repeat: no-repeat; /* Prevents tiling */
+        
+  }
+    html body #scroll-container #page8{
+      width:100vw;
+      
+    background-image: url('https://i.pinimg.com/1200x/2e/d9/dd/2ed9dd537a1152967a79c3ecb73b3656.jpg') !important;
+       background-size: cover; /* Forces the image to fill the entire container */
+    background-position: center; /* Keeps the focus in the middle */
+    background-repeat: no-repeat; /* Prevents tiling */
+        
+  }
+
+
+
 }
