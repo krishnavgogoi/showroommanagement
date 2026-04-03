@@ -712,3 +712,9 @@
 
 }
 
+@media (max-width: 768px) {
+  html body #scroll-container #page4 {
+    background-image: url('https://i.pinimg.com/736x/0c/c6/8e/0cc68e4513b80a24711f742546dfd2f1.jpg') !important;
+  }
+}
+
