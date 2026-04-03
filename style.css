@@ -2256,9 +2256,16 @@ html body .bottom4t{
     }
      #configpg .content .middle .rightc{
          height:55%;
-         width:100%
+         width:100%;
+         overflow-y:auto;
          
      }
+
+    #configpg .content .middle .rightc .laststep{
+        margin-top:10px;
+        position:absolute;
+        width:100%;
+    }
 
 #page9 .footer-container{
    
