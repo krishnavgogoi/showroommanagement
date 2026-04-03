@@ -2155,7 +2155,27 @@ input, select{
 
 
 
+
 @media (max-width: 768px) {
+  
+    html body #topheader{
+        width:100%;
+    }
+    html body #topheader .left{
+        width:90%;
+    }
+     #login{
+         width:40%
+     }
+    #login .middle{
+        
+    }
+   #login .middle .updiv{
+        display:flex;
+         flex-direction:column;
+   }
+
+    
   html body #scroll-container #page4 {
       width:100vw;
       
@@ -2200,7 +2220,23 @@ input, select{
     background-repeat: no-repeat; /* Prevents tiling */
         
   }
+    html body .bottom4{
+        display:flex;
+    }
+html body .bottom4t{
+   margin-top:-80px
+     
 
+    
+}
+    html body .bottom4b{
+  margin-left:-60px
+    
+}
 
+#page9 .footer-container{
+   
+}
 
+    
 }
