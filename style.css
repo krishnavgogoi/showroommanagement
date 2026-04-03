@@ -2271,5 +2271,51 @@ html body .bottom4t{
    
 }
 
+
+    
+    #taxdetails {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;   /* 🔥 scroll here */
+    background: #fff;
+}
+    #taxdetails .toplogo .toplogoimg{
+        width:100%;
+        
+    }
+
+/* Container */
+#taxdetails .container {
+    width: 95%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* GRID FIX */
+#taxdetails .container .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 2 columns */
+    gap: 10px;
+   
+}
+
+/* Inputs */
+#taxdetails .container .grid input
+{
+   height:40px;
+    padding: 10px;
+}
+
+/* Field (label + span) */
+#taxdetails .field {
+    display: flex;
+    justify-content: space-between;
+}
+    
+
     
 }
