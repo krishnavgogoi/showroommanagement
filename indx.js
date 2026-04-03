@@ -106,14 +106,14 @@ window.addEventListener('load', () => {
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  gsap.from(document.querySelector("#page1 .left1"),
-      { opacity: 0, x: -400, duration: 4.4, delay: 8 });
+  // gsap.from(document.querySelector("#page1 .left1"),
+  //     { opacity: 0, x: -400, duration: 4.4, delay: 8 });
 
-  gsap.to(document.querySelector("#page1 .right1"),
-      { x: 300, duration: 3.4, delay: 7.2 });
+  // gsap.to(document.querySelector("#page1 .right1"),
+  //     { x: 300, duration: 3.4, delay: 7.2 });
 
   gsap.from(document.querySelector(".left1txt"),
-      { opacity: 0, x: -600, duration: 4, ease: "power2.out", delay: 8 });
+      { opacity: 0, x: -600, duration: 3.5, ease: "power2.out", delay: 2 });
 });
 
 
