@@ -118,6 +118,152 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // =============================================
+//   GSAP
+// =============================================
+
+gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.defaults({
+  scroller: "#scroll-container"
+});
+
+gsap.from("#page2  .pg2-header ", {
+  scrollTrigger: {
+    trigger: "#page2  ",        
+    start: "top 15%",
+    end: "top 0%",
+    scrub: true,
+    markers: true,
+  },
+  x:-100,
+  opacity: 0
+});
+
+
+gsap.from(".t-card", {
+ 
+  opacity: 0,
+  duration: 0.8,
+  stagger: 0.2,   // each card 0.2s after previous
+  scrollTrigger: {
+    trigger: "#page2",
+    scroller: "#scroll-container",
+    start: "top center"
+  }
+});
+
+
+
+
+
+gsap.from("#page4 .bottom4t,#page4 .bottom4b", {
+  scrollTrigger: {
+    trigger: "#page4 .top4 ",        
+    start: "top 15%",
+    end: "top 0%",
+    scrub: true,
+    markers: true,
+  },
+  x: -300,   
+  opacity: 0
+})
+
+
+
+
+
+gsap.from("#page5 .bottom4t,#page5 .bottom4b", {
+  scrollTrigger: {
+    trigger: "#page5 .top5 ",        
+    start: "top 15%",
+    end: "top 0%",
+    scrub: true,
+    markers: true,
+  },
+  x: -300,   
+  opacity: 0
+});
+
+
+gsap.from("#page6 .bottom4t,#page6 .bottom4b", {
+  scrollTrigger: {
+    trigger: "#page6 .top6 ",        
+    start: "top 15%",
+    end: "top 0%",
+    scrub: true,
+    markers: true,
+  },
+  x: -300,   
+  opacity: 0
+});
+
+
+
+
+gsap.from("#page7 .bottom4t,#page7 .bottom4b", {
+  scrollTrigger: {
+    trigger: "#page7 .top7 ",        
+    start: "top 15%",
+    end: "top 0%",
+    scrub: true,
+    markers: true,
+  },
+  x: -300,   
+  opacity: 0
+});
+
+gsap.from("#page8 .bottom4t,#page8 .bottom4b", {
+  scrollTrigger: {
+    trigger: "#page8 .top8 ",        
+    start: "top 15%",
+    end: "top 0%",
+    scrub: true,
+    markers: true,
+  },
+  x: -300,   
+  opacity: 0
+});
+
+
+gsap.from("#page9 .footer-container", {
+  scrollTrigger: {
+    trigger: "#page9  ",        
+    start: "top 15%",
+    end: "top 0%",
+    scrub: true,
+    markers: true,
+  },
+  y:150,
+  opacity: 0
+});
+
+
+gsap.from("#page9  .brandblock h1 ", {
+  scrollTrigger: {
+    trigger: "#page9  ",        
+    start: "top 15%",
+    end: "top 0%",
+    scrub: true,
+    markers: true,
+  },
+  x:-400,
+  opacity: 0
+});
+
+gsap.from("#page9  .brandblock p ", {
+  scrollTrigger: {
+    trigger: "#page9  ",        
+    start: "top 15%",
+    end: "top 0%",
+    scrub: true,
+    markers: true,
+  },
+  x:400,
+  opacity: 0
+});
+
+
+
+// =============================================
 //  TOP HEADER — hamburger menu
 // =============================================
 
@@ -436,13 +582,7 @@ document.querySelector("#configpg #addCarBtn")
       addonTotal += optPrice;
   });
 
-  // ---- 4. C++ TaxSystem base price + addon price ----
-  // const result = window.taxSystem.calculate(carName, carfuel);
-
-  // // addon price is added to taxable amount before GST
-  // const gstRate        = result.gstrate / 100;
-  // const basePrice      = result.price;
-  // const discount       = result.discount;
+  
   const result = window.taxSystem.calculate(carName, carfuel);
   const cfg    = window.priceConfig?.[carName];
   
@@ -499,129 +639,6 @@ document.querySelector("#configpg #addCarBtn")
 
 
 
-// var Module = {
-//   onRuntimeInitialized: function () {
-//       console.log("WASM READY");
-//       window.taxSystem      = new Module.TaxSystem();
-//       window.adminSystem    = new Module.AdminSystem();
-//       window.bookingManager = new Module.BookingManager();
-
-//       // ── Load admin-set prices ──────────────────────────────────
-//       fetch('prices.json')
-//           .then(r => r.json())
-//           .then(cfg => {
-//               window.priceConfig = cfg;
-//               console.log("prices.json loaded:", cfg);
-//           })
-//           .catch(() => {
-//               // File doesn't exist yet — use WASM defaults silently
-//               window.priceConfig = null;
-//           });
-//   }
-// };
-
-
-// document.querySelector("#configpg #addCarBtn")
-// .addEventListener("click", () => {
- 
-//     if (!window.taxSystem) {
-//         alert("WASM still initializing, try again.");
-//         return;
-//     }
- 
-//     taxpage.classList.add("active");
- 
-//     const carName = document.querySelector(".carname").textContent.trim() || "Unknown";
-//     taxpage.querySelector("#brandName").textContent = carName;
-//     taxpage.querySelector("#fuel").textContent      = carfuel;
- 
-//     // ── Colour / wheel (same as before) ──────────────────────────
-//     const exteriorDrops = document.querySelectorAll("#configpg .z01 .dropdown");
-//     const interiorDrops = document.querySelectorAll("#configpg .z02 .dropdown");
- 
-//     const extColourChosen = getChosenOption(exteriorDrops[0]);
-//     const extColourName   = extColourChosen.querySelector(".wname")?.textContent.trim() || "WHITE";
-//     const extColourPrice  = parseInt(extColourChosen.dataset.price || 0);
-//     const intColourChosen = getChosenOption(interiorDrops[0]);
-//     const intColourName   = intColourChosen.querySelector(".wname")?.textContent.trim() || "BLACK";
-//     const intColourPrice  = parseInt(intColourChosen.dataset.price || 0);
-//     taxpage.querySelector("#extcolour").textContent =
-//         `${extColourName} (Ext)${extColourPrice > 0 ? " +₹"+extColourPrice.toLocaleString() : ""}  /  ` +
-//         `${intColourName} (Int)${intColourPrice > 0 ? " +₹"+intColourPrice.toLocaleString() : ""}`;
- 
-//     const wheelChosen = getChosenOption(exteriorDrops[1]);
-//     const wheelName   = wheelChosen.querySelector(".wname")?.textContent.trim() || "15\" Alloys";
-//     const wheelPrice  = parseInt(wheelChosen.dataset.price || 0);
-//     taxpage.querySelector("#wheelsize").textContent =
-//         wheelPrice > 0 ? `${wheelName} +₹${wheelPrice.toLocaleString()}` : wheelName;
- 
-//     // ── Addon total ───────────────────────────────────────────────
-//     const allDropdowns = [
-//         ...document.querySelectorAll("#configpg .z01 .dropdown"),
-//         ...document.querySelectorAll("#configpg .z02 .dropdown")
-//     ];
-//     let addonTotal = 0;
-//     allDropdowns.forEach(d => {
-//         addonTotal += parseInt(getChosenOption(d).dataset.price || 0);
-//     });
- 
-//     // ── Price: admin override takes priority over WASM ────────────
-//     const cfg    = window.priceConfig?.[carName];   // admin-set config
-//     const wasmResult = window.taxSystem.calculate(carName, carfuel);
- 
-//     const basePrice  = cfg ? cfg.price       : wasmResult.price;
-//     const discountRs = cfg ? cfg.discountRs  : wasmResult.discount;
-//     const gstRatePct = carfuel === "EV" ? 5 : 18;
- 
-//     // Show admin note if set
-//     if (cfg?.note) {
-//         let noteEl = taxpage.querySelector("#admin-note");
-//         if (!noteEl) {
-//             noteEl = document.createElement("p");
-//             noteEl.id = "admin-note";
-//             noteEl.style.cssText = "color:#e8b84b;font-size:13px;margin:4px 0";
-//             taxpage.querySelector(".summary").prepend(noteEl);
-//         }
-//         noteEl.textContent = cfg.note;
-//     }
- 
-//     const taxable       = (basePrice - discountRs) + addonTotal;
-//     const gstAmount     = taxable * (gstRatePct / 100);
-//     const totalWithGst  = taxable + gstAmount;
- 
-//     document.getElementById("price").textContent    = "₹" + basePrice.toLocaleString();
-//     document.getElementById("discount").textContent = discountRs.toLocaleString();
-//     document.getElementById("gstrate").textContent  = gstRatePct;
-//     document.getElementById("gst").textContent      = gstAmount.toFixed(2);
-//     document.getElementById("total").textContent    = totalWithGst.toFixed(2);
- 
-//     // ── Dynamic config rows (unchanged from your original) ────────
-//     const carGrid = document.querySelector("#brandName").closest(".grid");
-//     if (!carGrid) return;
-//     carGrid.querySelectorAll(".dynamic-config").forEach(e => e.remove());
- 
-//     allDropdowns.forEach((dropdown, index) => {
-//         if (index === 0 || index === 1 || index === 4) return;
-//         const chosen   = getChosenOption(dropdown);
-//         const optName  = chosen.querySelector(".wname")?.textContent.trim() || "";
-//         const optPrice = parseInt(chosen.dataset.price || 0);
-//         const label    = dropdownLabels[index] ||
-//                          dropdown.querySelector(".dropdown-selected").textContent.trim();
-//         const field = document.createElement("div");
-//         field.classList.add("field", "dynamic-config");
-//         field.innerHTML = `<label>${label}: </label>
-//                            <span>${optName}${optPrice > 0
-//                                ? " (+₹" + optPrice.toLocaleString() + ")"
-//                                : ""}</span>`;
-//         carGrid.appendChild(field);
-//     });
-// });
-
-
-
-
-
-
 
 
 
@@ -634,12 +651,6 @@ document.querySelector("#taxdetails .topcontent .cross")
 
 
 
-// function taxpgbtn(){
-//   alert("Car booked successfully");
-//   taxpage.classList.remove("active");
-  
-//   configpage.classList.remove("active");
-// }
 async function taxpgbtn() {
 
   // ── 1. Validate ────────────────────────────────────────────────────
@@ -764,57 +775,6 @@ function tdUpdateTimeLimit() {
 
 tdDateInput.addEventListener("change", tdUpdateTimeLimit);
 tdSetDateDefaults();
-
-
-// ---- submit — stores in window.bookingManager ----
-
-// function tdHandleSubmit() {
-
-//   const car   = document.getElementById("td-car").value;
-//   const name  = document.getElementById("td-name").value.trim();
-//   const email = document.getElementById("td-email").value.trim();
-//   const date  = tdDateInput.value;
-//   const time  = tdTimeInput.value;
-
-//   if (!car || !name || !email || !date || !time) {
-//       alert("Please fill in all fields.");
-//       return;
-//   }
-
-//   if (new Date(`${date}T${time}`) < new Date()) {
-//       alert("Please select a future date and time.");
-//       return;
-//   }
-
-//   // duplicate check via window.bookingManager
-//   if (window.bookingManager && window.bookingManager.isDuplicate(car, email, date)) {
-//       alert("You already have a test drive booked for this car on this date.");
-//       return;
-//   }
-
-//   // store in window.bookingManager
-//   if (window.bookingManager) {
-//       window.bookingManager.addBooking(car, name, email, date, time);
-//       console.log("Booking stored. Total:", window.bookingManager.getTotalBookings());
-//       console.log(window.bookingManager.getBooking(
-//           window.bookingManager.getTotalBookings() - 1));
-//   }
-
-//   // confirmation UI
-//   const fmtDate = new Date(date + "T00:00:00").toLocaleDateString("en-US", {
-//       weekday: "long", month: "long", day: "numeric", year: "numeric"
-//   });
-//   const fmtTime = new Date("1970-01-01T" + time).toLocaleTimeString("en-US", {
-//       hour: "numeric", minute: "2-digit", hour12: true
-//   });
-
-//   document.getElementById("td-conf-text").innerHTML =
-//       `<span>${car}</span> &middot; ${fmtDate} at <span>${fmtTime}</span><br>
-//        Confirmation will be sent to <span>${email}</span>`;
-
-//   document.getElementById("td-confirmation").classList.add("td-show");
-//   document.getElementById("td-submit-btn").style.display = "none";
-// }
 
 
 

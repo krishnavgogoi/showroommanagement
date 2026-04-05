@@ -1,38 +1,37 @@
 {
-    "Mustang": {
-      "price": 70000.00,
-      "discountPct": 0.00,
-      "discountRs": 0.00,
-      "finalPrice": 70000.00,
-      "note": ""
-    },
-    "720s": {
-      "price": 30000.00,
-      "discountPct": 0.00,
-      "discountRs": 0.00,
-      "finalPrice": 30000.00,
-      "note": ""
-    },
-    "Challenger": {
-      "price": 5000000.00,
-      "discountPct": 0.00,
-      "discountRs": 0.00,
-      "finalPrice": 5000000.00,
-      "note": ""
-    },
-    "M3 CS": {
-      "price": 7200000.00,
-      "discountPct": 0.00,
-      "discountRs": 0.00,
-      "finalPrice": 7200000.00,
-      "note": ""
-    },
-    "E-Tron": {
-      "price": 69000000.00,
-      "discountPct": 0.00,
-      "discountRs": 0.00,
-      "finalPrice": 69000000.00,
-      "note": ""
-    }
+  "Mustang": {
+    "price": 6900000.00,
+    "discountPct": 0.00,
+    "discountRs": 0.00,
+    "finalPrice": 6900000.00,
+    "note": ""
+  },
+  "720s": {
+    "price": 30000.00,
+    "discountPct": 0.00,
+    "discountRs": 0.00,
+    "finalPrice": 30000.00,
+    "note": ""
+  },
+  "Challenger": {
+    "price": 5000000.00,
+    "discountPct": 0.00,
+    "discountRs": 0.00,
+    "finalPrice": 5000000.00,
+    "note": ""
+  },
+  "M3 CS": {
+    "price": 7200000.00,
+    "discountPct": 0.00,
+    "discountRs": 0.00,
+    "finalPrice": 7200000.00,
+    "note": ""
+  },
+  "E-Tron": {
+    "price": 69000000.00,
+    "discountPct": 0.00,
+    "discountRs": 0.00,
+    "finalPrice": 69000000.00,
+    "note": ""
   }
-  
+}
