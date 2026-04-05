@@ -132,7 +132,7 @@ gsap.from("#page2  .pg2-header ", {
     start: "top 15%",
     end: "top 0%",
     scrub: true,
-    markers: true,
+    
   },
   x:-100,
   opacity: 0
@@ -161,7 +161,7 @@ gsap.from("#page4 .bottom4t,#page4 .bottom4b", {
     start: "top 15%",
     end: "top 0%",
     scrub: true,
-    markers: true,
+   
   },
   x: -300,   
   opacity: 0
@@ -177,7 +177,7 @@ gsap.from("#page5 .bottom4t,#page5 .bottom4b", {
     start: "top 15%",
     end: "top 0%",
     scrub: true,
-    markers: true,
+  
   },
   x: -300,   
   opacity: 0
@@ -190,7 +190,7 @@ gsap.from("#page6 .bottom4t,#page6 .bottom4b", {
     start: "top 15%",
     end: "top 0%",
     scrub: true,
-    markers: true,
+
   },
   x: -300,   
   opacity: 0
@@ -205,7 +205,7 @@ gsap.from("#page7 .bottom4t,#page7 .bottom4b", {
     start: "top 15%",
     end: "top 0%",
     scrub: true,
-    markers: true,
+   
   },
   x: -300,   
   opacity: 0
@@ -217,7 +217,7 @@ gsap.from("#page8 .bottom4t,#page8 .bottom4b", {
     start: "top 15%",
     end: "top 0%",
     scrub: true,
-    markers: true,
+
   },
   x: -300,   
   opacity: 0
@@ -230,7 +230,7 @@ gsap.from("#page9 .footer-container", {
     start: "top 15%",
     end: "top 0%",
     scrub: true,
-    markers: true,
+    
   },
   y:150,
   opacity: 0
@@ -243,7 +243,7 @@ gsap.from("#page9  .brandblock h1 ", {
     start: "top 15%",
     end: "top 0%",
     scrub: true,
-    markers: true,
+   
   },
   x:-400,
   opacity: 0
@@ -255,7 +255,7 @@ gsap.from("#page9  .brandblock p ", {
     start: "top 15%",
     end: "top 0%",
     scrub: true,
-    markers: true,
+   
   },
   x:400,
   opacity: 0
