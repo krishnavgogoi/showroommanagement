@@ -8,8 +8,21 @@
 html, body {
     height: 100%;
     overflow-x: hidden;
+    cursor: none;
 }
 
+.flair {
+    width: 55px;
+    height: 55px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 20;
+    background-color: #fbfdff;
+    border-radius: 50%;
+    mix-blend-mode: difference;
+  }
 /*  THIS is the scrolling element */
 #scroll-container {
     height: 100vh;
@@ -1171,6 +1184,8 @@ input:focus {
     justify-content: center;
     padding: 0 0 32px;
     overflow: hidden;
+    cursor: none;
+
   }
   
   .pg2-header {
@@ -1216,14 +1231,18 @@ input:focus {
     cursor: grab;
     user-select: none;
     scrollbar-width: none;
+    cursor: none;
   }
   
   .ticker-track::-webkit-scrollbar {
     display: none;
+    cursor: none;
   }
   
   .ticker-track:active {
-    cursor: grabbing;
+    /* cursor: grabbing; */
+    cursor: none;
+
   }
   
   .t-card {
@@ -1241,6 +1260,7 @@ input:focus {
   .t-card:hover {
     transform: translateY(-8px);
     border-color: rgba(200, 150, 12, 0.35);
+    cursor: none;
   }
   
   .t-card img {
@@ -1250,6 +1270,7 @@ input:focus {
     filter: brightness(0.6) saturate(0.8);
     transition: filter 0.35s ease;
     pointer-events: none;
+    
   }
   
   .t-card:hover img {
@@ -1269,6 +1290,7 @@ input:focus {
   
   .t-card:hover .t-card-index {
     color: #c8960c;
+    cursor: none;
   }
   
   .t-card-info {
@@ -2149,6 +2171,18 @@ input, select{
     html body #topheader .left{
         width:90%;
     }
+    .flair {
+        width: 25px;
+        height: 25px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 20;
+        background-color: #fbfdff;
+        border-radius: 50%;
+        mix-blend-mode: difference;
+      }
      #login{
          width:40%
      }
@@ -2304,4 +2338,11 @@ html body .bottom4t{
 
     
 }
+
+
+
+
+
+
+
 
