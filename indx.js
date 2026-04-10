@@ -915,3 +915,122 @@ function tdClosePage() {
           if (el.type !== "date" && el.type !== "time") el.value = "";
       });
 }
+
+
+//==============================================
+//FILTER PAGE
+//==============================================
+
+// ── Car data for filtering (matches your pages & prices.json keys)
+const mmCars = [
+  { name: 'Mustang',   fuel: 'Petrol', price: 70,  page: 'page4' },
+  { name: '720S',      fuel: 'Petrol', price: 200, page: 'page5' },
+  { name: 'Challenger',fuel: 'Petrol', price: 80,  page: 'page6' },
+  { name: 'M3 CS',     fuel: 'Petrol', price: 140, page: 'page7' },
+  { name: 'E-Tron',    fuel: 'EV',     price: 120, page: 'page8' },
+];
+
+// Open / Close
+function openFilter() {
+  document.getElementById('filterpage').classList.add('active');
+  document.getElementById('fp-backdrop').classList.add('active');
+}
+function closeFilter() {
+  document.getElementById('filterpage').classList.remove('active');
+  document.getElementById('fp-backdrop').classList.remove('active');
+}
+
+// Fuel pills
+document.querySelectorAll('.fp-pill').forEach(pill => {
+  pill.addEventListener('click', function () {
+      document.querySelectorAll('.fp-pill').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+  });
+});
+
+// Dual range slider
+const fpMin = document.getElementById('fp-min');
+const fpMax = document.getElementById('fp-max');
+const fpMinVal = document.getElementById('fp-min-val');
+const fpMaxVal = document.getElementById('fp-max-val');
+
+function updateRangeTrack() {
+  let minVal = parseInt(fpMin.value);
+  let maxVal = parseInt(fpMax.value);
+  if (minVal > maxVal - 10) {
+      if (this === fpMin) minVal = maxVal - 10;
+      else maxVal = minVal + 10;
+      fpMin.value = minVal;
+      fpMax.value = maxVal;
+  }
+  fpMinVal.textContent = minVal;
+  fpMaxVal.textContent = maxVal;
+  const pct1 = (minVal / 200) * 100;
+  const pct2 = (maxVal / 200) * 100;
+  document.querySelector('.fp-range-track-fill').style.left  = pct1 + '%';
+  document.querySelector('.fp-range-track-fill').style.width = (pct2 - pct1) + '%';
+}
+
+fpMin.addEventListener('input', updateRangeTrack);
+fpMax.addEventListener('input', updateRangeTrack);
+
+// Apply
+function applyFilter() {
+  const activeFuel = document.querySelector('.fp-pill.active').dataset.fuel;
+  const minP = parseInt(fpMin.value);
+  const maxP = parseInt(fpMax.value);
+
+  let matched = 0;
+
+  // Filter ticker cards on page2
+  document.querySelectorAll('.t-card').forEach(card => {
+      const name = card.querySelector('.t-card-name').textContent.trim();
+      const car = mmCars.find(c => c.name.toLowerCase() === name.toLowerCase());
+      if (!car) return;
+      const fuelOk  = activeFuel === 'all' || car.fuel === activeFuel;
+      const priceOk = car.price >= minP && car.price <= maxP;
+      if (fuelOk && priceOk) {
+          card.style.opacity = '1';
+          card.style.transform = 'scale(1)';
+          card.style.pointerEvents = 'all';
+          matched++;
+      } else {
+          card.style.opacity = '0.2';
+          card.style.transform = 'scale(0.96)';
+          card.style.pointerEvents = 'none';
+      }
+  });
+
+  // Dim configure pages (page4–8) that don't match
+  mmCars.forEach(car => {
+      const pg = document.getElementById(car.page);
+      if (!pg) return;
+      const fuelOk  = activeFuel === 'all' || car.fuel === activeFuel;
+      const priceOk = car.price >= minP && car.price <= maxP;
+      pg.style.opacity = (fuelOk && priceOk) ? '1' : '0.3';
+  });
+
+  document.getElementById('fp-results-hint').textContent =
+      matched + ' MODEL' + (matched !== 1 ? 'S' : '') + ' MATCH';
+
+  setTimeout(closeFilter, 600);
+}
+
+// Reset
+function resetFilter() {
+  document.querySelectorAll('.fp-pill').forEach(p => p.classList.remove('active'));
+  document.querySelector('.fp-pill[data-fuel="all"]').classList.add('active');
+  fpMin.value = 0;
+  fpMax.value = 200;
+  updateRangeTrack();
+  document.querySelectorAll('.t-card').forEach(card => {
+      card.style.opacity = '1';
+      card.style.transform = 'scale(1)';
+      card.style.pointerEvents = 'all';
+  });
+  mmCars.forEach(car => {
+      const pg = document.getElementById(car.page);
+      if (pg) pg.style.opacity = '1';
+  });
+  document.getElementById('fp-results-hint').textContent = '';
+}

@@ -326,7 +326,63 @@
 
 
 
+<!-- FILTER -->
+<div id="filterpage">
+    <div class="fp-top">
+        <div class="fp-label">REFINE</div>
+        <div class="fp-cross" onclick="closeFilter()">&#x2715;</div>
+    </div>
 
+    <div class="fp-body">
+
+        <!-- Fuel Type -->
+        <div class="fp-section">
+            <div class="fp-section-title">FUEL TYPE</div>
+            <div class="fp-pills">
+                <div class="fp-pill active" data-fuel="all">ALL</div>
+                <div class="fp-pill" data-fuel="Petrol">
+                    <span class="fp-pill-dot petrol"></span>PETROL
+                </div>
+                <div class="fp-pill" data-fuel="EV">
+                    <span class="fp-pill-dot ev"></span>ELECTRIC
+                </div>
+            </div>
+        </div>
+
+        <div class="fp-divider"></div>
+
+        <!-- Price Range -->
+        <div class="fp-section">
+            <div class="fp-section-title">PRICE RANGE</div>
+            <div class="fp-price-display">
+                ₹<span id="fp-min-val">0</span>L &nbsp;—&nbsp; ₹<span id="fp-max-val">200</span>L
+            </div>
+            <div class="fp-range-wrap">
+                <div class="fp-range-track"><div class="fp-range-track-fill"></div></div>
+                <input type="range" id="fp-min" min="0" max="200" value="0" step="5">
+                <input type="range" id="fp-max" min="0" max="200" value="200" step="5">
+            </div>
+            <div class="fp-range-labels">
+                <span>₹0L</span><span>₹200L</span>
+            </div>
+        </div>
+
+        <div class="fp-divider"></div>
+
+        <!-- Apply -->
+        <div class="fp-section">
+            <button class="fp-apply-btn" onclick="applyFilter()">APPLY FILTERS</button>
+            <button class="fp-reset-btn" onclick="resetFilter()">RESET</button>
+        </div>
+
+        <!-- Results hint -->
+        <div class="fp-results-hint" id="fp-results-hint"></div>
+
+    </div>
+</div>
+
+<!-- Backdrop -->
+<div id="fp-backdrop" onclick="closeFilter()"></div>
 
 
 
@@ -347,17 +403,9 @@
         </div>
     </div>
 </div>
-<!-- 
-<div id="page1">
-    <div class="left1">
-      <canvas id="bgCanvas"></canvas>
-      <div class="left1txt">
-        <br><br>
-        Buy the <span>drive</span> you've been <span>dreaming</span> about
-      </div>
-    </div>
-  </div> -->
 
+
+  
 
 
 <!--          xxxxxxxxxxxxxxx     x x x x x x x x x x xx x  x x x x xx x -->
@@ -366,6 +414,7 @@
       <div>
         <p class="pg2-label">Our Models</p>
         <h1 class="pg2-title">Setting new standards in<br>automotive excellence</h1>
+        <div  class="filterpgbtn"  onclick="openFilter()">Filter Cars</div>
       </div>
       <div class="pg2-count">05</div>
     </div>
