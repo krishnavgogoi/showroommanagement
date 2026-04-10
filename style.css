@@ -9,6 +9,7 @@ html, body {
     height: 100%;
     overflow-x: hidden;
     cursor: none;
+    scroll-behavior: auto;
 }
 
 .flair {
@@ -29,7 +30,12 @@ html, body {
     overflow-y: scroll;
     
     scroll-snap-type: y mandatory;
+    /* scroll-snap-type: y proximity; */
+
 }
+
+
+ 
 /* ----- Body Styling ----- */
 body {
     background-color: #ffffff;
@@ -1113,20 +1119,6 @@ input:focus {
 }
 
 
-/* .left1txt {
-   position: absolute;
-    top: 0;
-    left: 0;
-    font-size: clamp(48px, 6vw, 90px);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -1px;
-    color: #f5f5f5;
-    word-wrap: normal;
-   
-    padding-left: 50px;
-} */
-
 .left1txt span {
     color: #d02828;
     text-transform: uppercase;
@@ -1147,12 +1139,12 @@ input:focus {
     height: 100vh;
     overflow: hidden;
 }
-
+/* 
 .left1 video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
+} */
 
 .left1txt {
     position: absolute;
@@ -1170,8 +1162,17 @@ input:focus {
     padding-left: 50px;
 }
 
+/*  */
+#bgCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* canvas doesn't support this directly, handle in JS */
+  }
 
-
+/*  */
 
 
 #page2 {
@@ -1966,7 +1967,7 @@ position: relative;  /* add this */
     justify-content: center;
     flex-direction: column;
 }
-#configpg #addCarBtn{
+/* #configpg #addCarBtn{
     height: 50px;
     width: 95%;
     border-radius: 6px;
@@ -1976,17 +1977,99 @@ position: relative;  /* add this */
     color: #ccc;
      z-index: 3;
     transition: transform 0.4s ease-in, border 0.4s ease-in,background-color 0.5s ease-in;
-}
+} */
 
+/* 
 #configpg #addCarBtn:hover{
     transform: scale(1.05);
     border: 2px solid rgb(255, 221, 0);
     background-color: #dbb312b8;
+} */
+
+
+/* ── Add Car Button ── */
+#configpg #addCarBtn {
+    height: 34px;
+    width: 95%;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #252525f1 60%, #1c1700 100%);
+    border: none;
+    position: relative;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #d4a827;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
+/* Gold gradient border via pseudo-element */
+#configpg #addCarBtn {
+    /* remove overflow: hidden if you had it */
+    border: 3px solid #b6a010;
+    background: #252525f1;
+    transition: transform 0.4s ease, background 0.4s ease, color 0.3s ease, border-color 0.3s ease;
+}
 
+/* delete the ::before rule entirely */
 
+#configpg #addCarBtn:hover {
+    transform: translateY(-2px);
+    color: #ffffff;
+    background-color: rgb(252, 176, 12);
+    border-color: rgb(252, 176, 12);
+}
 
+#configpg #addCarBtn:hover::before {
+    opacity: 1;
+    background: linear-gradient(135deg, #d4a827, #ffe066, #d4a827);
+}
+
+#configpg #addCarBtn:active {
+    transform: scale(0.98);
+}
+
+/* ── Select Test Drive Button ── */
+#configpg #selectedtestdrive {
+    height: 34px;
+    width: 95%;
+    border-radius: 6px;
+    background: #111f13f1;
+    border: 2px solid #2e7a42;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4cba6a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: transform 0.3s ease, color 0.3s ease,
+                background 0.3s ease, border-color 0.3s ease;
+}
+
+/* delete ::before entirely */
+
+#configpg #selectedtestdrive:hover {
+    transform: translateY(-2px);
+    color: #ffffff;
+    background: rgb(106, 208, 10);
+    border-color: rgb(106, 208, 10);
+}
+
+#configpg #selectedtestdrive:active {
+    transform: scale(0.98);
+}
 
 
 

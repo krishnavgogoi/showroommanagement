@@ -2,7 +2,6 @@
 
 
 
-
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxzxxxxxxxxxxxxxxxxxxzxzxxzxzxzxzxzxzxzxzxzxzxzxzxzxxzxzxzxzxzxzxxzxzxzxzxzxzxzxzxxzxzxzxzxzxzxzxxzxz
 
 
@@ -12,27 +11,43 @@
 // Add "loading" class to body immediately
 
 
-document.body.classList.add('loading');
-window.addEventListener('load', () => {
-
-  const loader = document.getElementById('loader');
-  const video = document.getElementById('loaderVideo');
-
-  video.addEventListener('ended', () => {
-
-      loader.classList.add('fade-out');
-
-      setTimeout(() => {
-          loader.style.display = 'none';
-          document.body.classList.remove('loading');
-      }, 5800); 
-  });
-
-});
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 
+
+
+document.getElementById('selectedtestdrive').addEventListener('click', function () {
+  // Get the currently selected car name from configpg
+  const carName = document.querySelector('#configpg .carname').textContent.trim();
+
+  // Open the test drive overlay
+  document.getElementById('booktestdrive').classList.add('active');
+
+  // Pre-select the car in the dropdown
+  const tdCarSelect = document.getElementById('td-car');
+  if (carName) {
+      // Try to find a matching option (case-insensitive)
+      let matched = false;
+      for (let option of tdCarSelect.options) {
+          if (option.value.toLowerCase() === carName.toLowerCase()) {
+              tdCarSelect.value = option.value;
+              matched = true;
+              break;
+          }
+      }
+      // If no exact match, try partial match (e.g. "720s" vs "720S")
+      if (!matched) {
+          for (let option of tdCarSelect.options) {
+              if (option.value.toLowerCase().includes(carName.toLowerCase()) ||
+                  carName.toLowerCase().includes(option.value.toLowerCase())) {
+                  tdCarSelect.value = option.value;
+                  break;
+              }
+          }
+      }
+  }
+});
 
 
 // =============================================
@@ -274,7 +289,6 @@ window.addEventListener("mousemove", e => {
   xTo(e.clientX);
   yTo(e.clientY);
 });
-
 
 
 
