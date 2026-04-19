@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -44,7 +44,158 @@ body {
 }
 /*--------- loader -----------*/
 
+
+/* ── Dealer Alert Overlay ── */
+#dealerAlert {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  #dealerAlert.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  .da-card {
+    background: #0d0d0d;
+    border: 1px solid #1e1e1e;
+    border-radius: 16px;
+    width: min(460px, 92vw);
+    overflow: hidden;
+    font-family: 'Orbitron', monospace;
+  }
+  
+  .da-header {
+    background: #c8960c;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .da-header span {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #050505;
+    font-weight: 700;
+  }
+  
+  .da-section {
+    padding: 24px 24px 16px;
+  }
+  
+  .da-micro {
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #444;
+    margin-bottom: 6px;
+  }
+  
+  .da-ref {
+    font-size: 18px;
+    color: #e0e0e0;
+    letter-spacing: 4px;
+    margin: 0;
+  }
+  
+  .da-divider {
+    height: 1px;
+    background: #1a1a1a;
+    margin: 0 24px;
+  }
+  
+  .da-grid {
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  
+  .da-val {
+    font-size: 13px;
+    color: #e0e0e0;
+    letter-spacing: 1px;
+    margin: 0;
+  }
+  .da-val.gold {
+    color: #c8960c;
+  }
+  
+  .da-address {
+    padding: 16px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .da-address p {
+    font-size: 10px;
+    color: #555;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .da-actions {
+    padding: 0 24px 24px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  .da-btn-close {
+    flex: 1;
+    height: 42px;
+    background: transparent;
+    border: 1px solid #1e1e1e;
+    color: #555;
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .da-btn-close:hover {
+    border-color: #333;
+    color: #888;
+  }
+  
+  .da-btn-save {
+    flex: 1;
+    height: 42px;
+    background: #c8960c;
+    border: none;
+    color: #050505;
+    font-family: 'Orbitron', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+  .da-btn-save:hover {
+    background: #e0aa0e;
+  }
+
+
+
+
+
+
 /* Make loader cover the entire viewport */
+
+
+
+
+
+
+
 #loader{
     position: fixed;
     inset: 0;
@@ -584,7 +735,7 @@ tr:hover td {
     justify-content: center;
     padding: 20px;
     background: rgba(0, 0, 0, 0.92);
-    z-index: 9999;
+    z-index: 10;
     isolation: isolate;
   }
   
@@ -1116,15 +1267,32 @@ input:focus {
 
    position: relative;
    overflow: hidden;
+   
+}
+.left1txt{
+    color: rgba(255, 255, 255, 0.894); /* Base color */
+    mix-blend-mode: difference;
 }
 
-
-.left1txt span {
+/* .left1txt span {
     color: #d02828;
     text-transform: uppercase;
+
+} */
+
+.left1txt span {
+    text-transform: uppercase;
+    
+    /* 1. Set your gradient background */
+    background-image: linear-gradient(to right, #ff0707,#ff3d07,#ff5507,#ff7207,#ff8707,#ffac07); 
+    
+    /* 2. Clip the background to the text */
+    -webkit-background-clip: text;
+    background-clip: text;
+    
+    /* 3. Make the text fill transparent */
+    color: transparent;
 }
-
-
 
 
 .left1 video {
@@ -1160,6 +1328,10 @@ input:focus {
     word-wrap: normal;
     z-index: 2;
     padding-left: 50px;
+    margin-top: 360px;
+    font-family: 'Domini', sans-serif;
+
+
 }
 
 /*  */
@@ -1829,6 +2001,9 @@ input:focus {
     position:relative;
     overflow:hidden;
 }
+
+
+
 
 /* image strip */
 

@@ -1,0 +1,130 @@
+========================================
+  M MOTORS — BOOKING CONFIRMATION
+========================================
+Date & Time   : 10/4/2026, 4:09:37 pm
+
+── CUSTOMER DETAILS ──
+Name          : krishnav
+Phone         : 9898
+Email         : kjadkja
+Address       : jhedwe
+Bank Acct No  : 09808
+
+── CAR DETAILS ──
+Model         : Mustang
+Fuel Type     : Petrol
+Colour        : WHITE (Exterior)  /  BLACK (Interior)
+Wheel Size    : 15" Alloys
+
+── PAYMENT DETAILS ──
+Payment Mode  : Cash
+Ex-Showroom   : ₹69,000,000
+Discount      : 0
+GST (18%)   : 12420000.00
+Total Price   : 81420000.00
+========================================
+
+========================================
+  M MOTORS — BOOKING CONFIRMATION
+========================================
+Date & Time   : 19/4/2026, 2:30:17 pm
+
+── CUSTOMER DETAILS ──
+Name          : fd
+Phone         : d
+Email         : d
+Address       : d
+Bank Acct No  : d
+
+── CAR DETAILS ──
+Model         : Mustang
+Fuel Type     : Petrol
+Colour        : WHITE (Exterior)  /  BLACK (Interior)
+Wheel Size    : 15" Alloys
+
+── PAYMENT DETAILS ──
+Payment Mode  : Loan
+Ex-Showroom   : ₹6,900,000
+Discount      : 0
+GST (18%)   : 1242000.00
+Total Price   : 8142000.00
+========================================
+
+========================================
+  M MOTORS — BOOKING CONFIRMATION
+========================================
+Date & Time   : 19/4/2026, 2:30:42 pm
+
+── CUSTOMER DETAILS ──
+Name          : fd
+Phone         : d
+Email         : d
+Address       : d
+Bank Acct No  : d
+
+── CAR DETAILS ──
+Model         : Mustang
+Fuel Type     : Petrol
+Colour        : WHITE (Exterior)  /  BLACK (Interior)
+Wheel Size    : 15" Alloys
+
+── PAYMENT DETAILS ──
+Payment Mode  : Loan
+Ex-Showroom   : ₹6,900,000
+Discount      : 0
+GST (18%)   : 1242000.00
+Total Price   : 8142000.00
+========================================
+
+========================================
+  M MOTORS — BOOKING CONFIRMATION
+========================================
+Date & Time   : 19/4/2026, 2:31:12 pm
+
+── CUSTOMER DETAILS ──
+Name          : fd
+Phone         : d
+Email         : d
+Address       : d
+Bank Acct No  : d
+
+── CAR DETAILS ──
+Model         : Mustang
+Fuel Type     : Petrol
+Colour        : WHITE (Exterior)  /  BLACK (Interior)
+Wheel Size    : 15" Alloys
+
+── PAYMENT DETAILS ──
+Payment Mode  : Loan
+Ex-Showroom   : ₹6,900,000
+Discount      : 0
+GST (18%)   : 1242000.00
+Total Price   : 8142000.00
+========================================
+
+========================================
+  M MOTORS — BOOKING CONFIRMATION
+========================================
+Date & Time   : 19/4/2026, 2:35:00 pm
+
+── CUSTOMER DETAILS ──
+Name          : Swapnil goat
+Phone         : 6001067964
+Email         : swapnilgohain07@gmail.com
+Address       : Silchar
+Bank Acct No  : 1234566789
+
+── CAR DETAILS ──
+Model         : Mustang
+Fuel Type     : Petrol
+Colour        : WHITE (Exterior)  /  BLACK (Interior)
+Wheel Size    : 15" Alloys
+
+── PAYMENT DETAILS ──
+Payment Mode  : Card
+Ex-Showroom   : ₹6,900,000
+Discount      : 0
+GST (18%)   : 1242000.00
+Total Price   : 8142000.00
+========================================
+

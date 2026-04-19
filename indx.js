@@ -747,6 +747,19 @@ async function taxpgbtn() {
   // ── 4. Close overlays ──────────────────────────────────────────────
   taxpage.classList.remove("active");
   configpage.classList.remove("active");
+
+
+
+
+
+  const carName = document.getElementById('brandName').textContent.trim();
+  const payMode = document.getElementById('td-paymode').value;
+
+  document.getElementById('taxdetails').classList.remove('active');
+  showDealerAlert(carName, payMode);
+
+
+
 }
 
 // =============================================
@@ -921,7 +934,6 @@ function tdClosePage() {
 //FILTER PAGE
 //==============================================
 
-// ── Car data for filtering (matches your pages & prices.json keys)
 const mmCars = [
   { name: 'Mustang',   fuel: 'Petrol', price: 70,  page: 'page4' },
   { name: '720S',      fuel: 'Petrol', price: 200, page: 'page5' },
@@ -990,13 +1002,16 @@ function applyFilter() {
       const fuelOk  = activeFuel === 'all' || car.fuel === activeFuel;
       const priceOk = car.price >= minP && car.price <= maxP;
       if (fuelOk && priceOk) {
-          card.style.opacity = '1';
-          card.style.transform = 'scale(1)';
-          card.style.pointerEvents = 'all';
+          // card.style.opacity = '1';
+          // card.style.transform = 'scale(1)';
+          // card.style.pointerEvents = 'all';
+          card.style.display       = 'block';  // was missing — cards stayed hidden
+card.style.pointerEvents = 'all';    // was missing — hover/click stayed dead
           matched++;
       } else {
-          card.style.opacity = '0.2';
-          card.style.transform = 'scale(0.96)';
+          // card.style.opacity = '0.2';
+          // card.style.transform = 'scale(0.96)';
+          card.style.display="none";
           card.style.pointerEvents = 'none';
       }
   });
@@ -1014,6 +1029,9 @@ function applyFilter() {
       matched + ' MODEL' + (matched !== 1 ? 'S' : '') + ' MATCH';
 
   setTimeout(closeFilter, 600);
+
+
+  
 }
 
 // Reset
@@ -1024,13 +1042,39 @@ function resetFilter() {
   fpMax.value = 200;
   updateRangeTrack();
   document.querySelectorAll('.t-card').forEach(card => {
-      card.style.opacity = '1';
-      card.style.transform = 'scale(1)';
-      card.style.pointerEvents = 'all';
+    card.style.display       = 'block';  // was missing — cards stayed hidden
+    card.style.pointerEvents = 'all';    // was missing — hover/click stayed dead
   });
   mmCars.forEach(car => {
       const pg = document.getElementById(car.page);
       if (pg) pg.style.opacity = '1';
   });
   document.getElementById('fp-results-hint').textContent = '';
+
+ 
+}
+
+
+
+
+
+
+
+function showDealerAlert(carName, payMode) {
+  const today = new Date();
+  const start = new Date(today); start.setDate(today.getDate() + 6);
+  const end   = new Date(today); end.setDate(today.getDate() + 8);
+  const fmt = d => d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  const ref = 'MM-' + today.getFullYear() + '-' + String(Math.floor(1000 + Math.random() * 9000));
+
+  document.getElementById('appt-ref').textContent    = ref;
+  document.getElementById('appt-window').textContent = fmt(start) + ' – ' + fmt(end);
+  document.getElementById('appt-car').textContent    = carName;
+  document.getElementById('appt-pay').textContent    = payMode;
+
+  document.getElementById('dealerAlert').classList.add('active');
+}
+
+function closeDealerAlert() {
+  document.getElementById('dealerAlert').classList.remove('active');
 }
