@@ -456,19 +456,36 @@
 <div id="scroll-container">
 
  
-<div id="page1">
-    <div class="left1">
-        <video id="bgVideo" autoplay muted playsinline>
+    <div id="page1">
+        <div id="videoLoader">
+          <svg viewBox="0 0 60 60" class="loader-ring">
+            <circle cx="30" cy="30" r="24"
+              fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2.5"/>
+            <circle id="loaderArc" cx="30" cy="30" r="24"
+              fill="none" stroke="url(#grad)" stroke-width="2.5"
+              stroke-dasharray="150.8" stroke-dashoffset="150.8"
+              stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%"   stop-color="#ff0707"/>
+                <stop offset="100%" stop-color="#ffac07"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <p class="loader-wordmark">M MOTORS</p>
+          <p class="loader-sub" id="loaderSub">Loading...</p>
+        </div>
+      
+        <div class="left1">
+          <video id="bgVideo" autoplay muted playsinline preload="auto">
             <source src="loading.mp4" type="video/mp4">
-        </video>
-
-        <div class="left1txt">
+          </video>
+          <div class="left1txt">
             <br><br>
             Buy the <span>drive</span> you've been <span>dreaming</span> about
+          </div>
         </div>
-    </div>
-</div>
-
+      </div>
 
   
 

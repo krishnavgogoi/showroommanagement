@@ -48,7 +48,23 @@ document.getElementById('selectedtestdrive').addEventListener('click', function 
       }
   }
 });
+//page1
+const loader        = document.getElementById('videoLoader');
+const arc           = document.getElementById('loaderArc');
+const loaderSub     = document.getElementById('loaderSub');
+const circumference = 150.8;
+let hidden          = false;
 
+function hideLoader() {
+  if (hidden) return;
+  hidden = true;
+  arc.style.strokeDashoffset = 0;
+  loaderSub.textContent = 'Ready';
+  setTimeout(() => loader.classList.add('hidden'), 300);
+}
+
+window.addEventListener('load', hideLoader);
+setTimeout(hideLoader, 10000);
 
 // =============================================
 //  CAROUSEL  (page 2)
