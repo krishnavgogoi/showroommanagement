@@ -49,6 +49,7 @@ document.getElementById('selectedtestdrive').addEventListener('click', function 
   }
 });
 //page1
+const video         = document.getElementById('bgVideo');
 const loader        = document.getElementById('videoLoader');
 const arc           = document.getElementById('loaderArc');
 const loaderSub     = document.getElementById('loaderSub');
@@ -63,7 +64,17 @@ function hideLoader() {
   setTimeout(() => loader.classList.add('hidden'), 300);
 }
 
-window.addEventListener('load', hideLoader);
+window.addEventListener('load', () => {
+  // hide loader
+  hideLoader();
+
+  // force video play
+  video.play().catch(() => {
+    document.addEventListener('click', () => video.play(), { once: true });
+    document.addEventListener('touchstart', () => video.play(), { once: true });
+  });
+});
+
 setTimeout(hideLoader, 10000);
 
 // =============================================
